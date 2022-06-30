@@ -1,17 +1,18 @@
 package com.haiku1967.listas
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.jocnunez.listas.R
 import java.util.*
 
 class ListActivity : AppCompatActivity() {
 
-    var list: MutableList <String> = mutableListOf()
+    var list: MutableList<String> = mutableListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,23 +20,34 @@ class ListActivity : AppCompatActivity() {
 
         Log.d("Debug", "List Activity OPEN")
 
+        val listService = ListService(this)
+        list = listService.getListFromFile()
+        list.forEach { addItemToLayout(it) }
 
         val newItem = findViewById<Button>(R.id.newButton)
 
         newItem.setOnClickListener {
-            addNewIten()
+
+            addNewIten(listService)
         }
     }
 
-    private fun addNewIten() {
+    private fun addNewIten(service: ListService) {
 
         val ramdomText = Date().toString()
-        val textView = TextView( this)
 
-        textView.text = ramdomText
+        service.additemToList(ramdomText)
+
+        addItemToLayout(ramdomText)
+    }
+
+    private fun addItemToLayout(text: String) {
+
+        val textView = TextView(this)
+
+        textView.text = text
 
         val listLayout = findViewById<LinearLayout>(R.id.listLayout)
         listLayout.addView(textView)
-
     }
 }
