@@ -1,5 +1,6 @@
 package com.haiku1967.listas
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -18,12 +19,19 @@ class LoginFormFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_login_form, container, false)
         val nextButton = view.findViewById<Button>(R.id.nextButton)
-
         val cancelButton = view.findViewById<Button>(R.id.cancelButton)
 
         nextButton.setOnClickListener {
-            Log.d("Debug", "Click on next button")
+
+            val intent = Intent(context, ListActivity::class.java).apply {
+
+                Log.d("Debug", "Click on next button")
+            }
+
+            startActivity(intent)
+
         }
+
         cancelButton.setOnClickListener {
             Log.d("Debug", "Click on cancel button")
         }
