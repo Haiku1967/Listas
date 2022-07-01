@@ -24,12 +24,10 @@ class ListActivity : AppCompatActivity() {
         list = listService.getListFromFile()
         list.forEach { addItemToLayout(it) }
 
-        val newItem = findViewById<Button>(R.id.newButton)
-
+/*        val newItem = findViewById<Button>(R.id.newButton)
         newItem.setOnClickListener {
-
             addNewIten(listService)
-        }
+        } */
     }
 
     private fun addNewIten(service: ListService) {

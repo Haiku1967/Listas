@@ -8,28 +8,28 @@ class ListService(context: Context) {
 
     val context = context
     val fileName = "lists.txt"
-    var list = mutableListOf<String>()
     val file = File(context.filesDir, fileName)
-
+    var list = mutableListOf<String>()
 
     // Obtener datos desde un fichero local (list.txt)
     fun getListFromFile(): MutableList<String> {
+
+        Log.d("Debug", "getListFromFile()")
 
         if (!file.exists()) {
             file.createNewFile()
         }
 
-        list = mutableListOf<String>()
-        file.useLines { list.add(it.toString()) }
-
-        Log.d("Debug", "fileDir: " + context.filesDir)
+        list = file.readLines() as MutableList<String>
 
         return list
     }
 
     // Añadir datos a un fichero local (list.txt)
     fun additemToList(item: String) {
+
         Log.d("Debug", "list.add(item): " + item)
+
         list.add(item)
         file.printWriter().use { out ->
             list.forEach {
