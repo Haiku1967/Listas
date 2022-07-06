@@ -3,6 +3,7 @@ package com.haiku1967.listas
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -24,28 +25,39 @@ class ListActivity : AppCompatActivity() {
         list = listService.getListFromFile()
         list.forEach { addItemToLayout(it) }
 
-/*        val newItem = findViewById<Button>(R.id.newButton)
+        val newItem = findViewById<Button>(R.id.newButton)
         newItem.setOnClickListener {
-            addNewIten(listService)
-        } */
+
+            val fragment = ItemDetailFragment()
+
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+
+            fragmentTransaction.remove(fragment)
+
+            fragmentTransaction.add(R.id.detailLayout, fragment)
+
+            fragmentTransaction.commit()
+
     }
+}
 
-    private fun addNewIten(service: ListService) {
+private fun addNewIten(service: ListService) {
 
-        val ramdomText = Date().toString()
+    val ramdomText = Date().toString()
 
-        service.additemToList(ramdomText)
+    service.additemToList(ramdomText)
 
-        addItemToLayout(ramdomText)
-    }
+    addItemToLayout(ramdomText)
+}
 
-    private fun addItemToLayout(text: String) {
+private fun addItemToLayout(text: String) {
 
-        val textView = TextView(this)
+    val textView = TextView(this)
 
-        textView.text = text
+    textView.text = text
 
-        val listLayout = findViewById<LinearLayout>(R.id.listLayout)
-        listLayout.addView(textView)
-    }
+    val listLayout = findViewById<LinearLayout>(R.id.listLayout)
+    listLayout.addView(textView)
+}
 }

@@ -11,25 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/itemDetail"
+        app:layout_constraintBottom_toTopOf="@+id/detailLayout"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
 
- <!--       <Button
+      <Button
             android:id="@+id/newButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Item"
+            android:text="@string/new_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/listLayout" />
--->
+
 
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/detailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <!-- 04/07/2022
     <fragment
         android:id="@+id/itemDetail"
         android:name="com.haiku1967.listas.ItemDetailFragment"
@@ -40,6 +49,6 @@
         app:layout_constraintStart_toStartOf="parent">
 
     </fragment>
-
+    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
